@@ -1,5 +1,4 @@
 require_relative "linke_list.rb"
-require_relative "secundary_methods.rb"
 require "pry"
 
 binding.pry

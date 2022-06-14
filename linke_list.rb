@@ -12,18 +12,31 @@ end
 
 class LinkedList
     attr_accessor :head, :tail
-    include SecundaryMethods
-    @@node_count= 0
-    @@instances = []
+
+
 
     def initialize
         @head = nil
         @tail = nil
+        @node_count= 0
+        @instances = []
     end
 
+    def next_node_correction
+        num = @@instances.length
+        @instances.each_with_index do |node,i|
+            if i < (num-1)
+                node.next_node = node[i+1]
+            elsif i == (num-1)
+                node.next_node = nil
+            end
+        end
+    end
+            
+
     def create_node(value=nil, next_node=nil)
-        @@instances.push (Node.new(value, next_node))
-        @@node_count += 1
+        @instances.push (Node.new(value, next_node))
+        @node_count += 1
     end
 
     def append(value)
@@ -56,34 +69,34 @@ class LinkedList
     end
 
     def at(index)
-        @@instances[index]
+        @instances[index]
     end
 
     def pop 
-        @@instances.pop
+        @instances.pop
         next_node_correction
     end
     
     def contains?(value)
-        @@instances.include?(value)
+        @instances.include?(value)
     end
 
     def find(value)
-        if @@instances.include?(value)
-            @@instances.each_with_index do |node,i|
+        if @instances.include?(value)
+            @instances.each_with_index do |node,i|
                 if node.value == value
                     puts "#{node} is in the index #{i}."
                 end
             end
-        elsif !@@instances.include?(value)
+        elsif !@instances.include?(value)
             puts "Node not found"
         end
     end
 
     def to_s
-        @@instances.each do |node|
+        @instances.each do |node|
             print " [#{node.value}] -> "
     end
 
-
+end
 end
