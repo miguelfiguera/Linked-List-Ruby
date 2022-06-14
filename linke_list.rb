@@ -24,7 +24,6 @@ class LinkedList
     end
 
     def next_node_correction
-        binding.pry
         length=@instances.length
         @instances.each_with_index do |n,i|
             if i < length-1
@@ -44,6 +43,7 @@ class LinkedList
     def append(value)
         @head.nil? ? @head= create_node(value) : @tail = create_node(value)
         puts @instances
+        next_node_correction if @instances.length >= 2
     end
 
     def prepend(value)
@@ -57,13 +57,10 @@ class LinkedList
     end
 
     def head
-       p @head.value
-       p @head.next_node
+       p @head
     end
 
     def tail
-        p @tail.value
-        p @tail.next_node
         p @tail
     end
 
@@ -77,7 +74,11 @@ class LinkedList
     end
     
     def contains?(value)
-        @instances.include?(value)
+        if @instances.include?(value)
+            puts true
+        else 
+            puts false
+        end
     end
 
     def find(value)
