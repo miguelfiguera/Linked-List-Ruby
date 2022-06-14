@@ -1,4 +1,5 @@
 require_relative "secundary_methods.rb"
+require "pry"
 
 class Node
     attr_accessor :next_node
@@ -11,7 +12,7 @@ end
 
 
 class LinkedList
-    attr_accessor :head, :tail
+    attr_accessor :head, :tail, :instances, :node_count
 
 
 
@@ -23,12 +24,16 @@ class LinkedList
     end
 
     def next_node_correction
-        num = @@instances.length
-        @instances.each_with_index do |node,i|
-            if i < (num-1)
-                node.next_node = node[i+1]
-            elsif i == (num-1)
-                node.next_node = nil
+        num = @instances.length
+        if num == 1
+            @instances
+        elsif num != 1
+            @instances.each_with_index do |node,i|
+                if i < (num-1) && node.next_node == nil
+                    node.next_node = node[i+1]
+                elsif i == (num-1)
+                    node.next_node = nil
+                end
             end
         end
     end
@@ -40,23 +45,19 @@ class LinkedList
     end
 
     def append(value)
-        if @head.nil?
-            @head = create_node(value)
-        elsif !@head.nil?
-            @tail = create_node(value)
-        end
+        @head.nil? ? @head= create_node(value) : @tail = create_node(value)
         next_node_correction
     end
 
     def prepend(value)
         @head = Node.new(value)
-        @@instances.push(@head)
-        @head.next_node = @@instances[1]
+        @instances.unshift(@head)
+        @head.next_node = @instances[1]
         next_node_correction
     end
 
     def size
-        size_of_nodes = @@instances.size
+        size_of_nodes = @instances.size
         size_of_nodes
     end
 

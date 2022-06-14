@@ -1,7 +1,6 @@
 require_relative "linke_list.rb"
 require "pry"
 
-binding.pry
 books = LinkedList.new
 
 books.append("harry potter 1")
