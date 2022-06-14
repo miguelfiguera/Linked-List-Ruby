@@ -43,7 +43,7 @@ class LinkedList
 
     def append(value)
         @head.nil? ? @head= create_node(value) : @tail = create_node(value)
-        p @instances
+        puts @instances
     end
 
     def prepend(value)
@@ -57,10 +57,13 @@ class LinkedList
     end
 
     def head
-       p @head
+       p @head.value
+       p @head.next_node
     end
 
     def tail
+        p @tail.value
+        p @tail.next_node
         p @tail
     end
 
