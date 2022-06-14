@@ -3,9 +3,9 @@ module SecundaryMethods
     def next_node_correction
         num = @@instances.length
         @@instances.each_with_index do |node,i|
-            if i < num
+            if i < (num-1)
                 node.next_node = node[i+1]
-            elsif i == num
+            elsif i == (num-1)
                 node.next_node = nil
             end
         end

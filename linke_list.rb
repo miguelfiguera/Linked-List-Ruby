@@ -39,6 +39,7 @@ class LinkedList
         @head = Node.new(value)
         @@instances.push(@head)
         @head.next_node = @@instances[1]
+        next_node_correction
     end
 
     def size
