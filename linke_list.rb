@@ -32,6 +32,7 @@ class LinkedList
         elsif !@head.nil?
             @tail = create_node(value)
         end
+        next_node_correction
     end
 
     def prepend(value)
@@ -41,19 +42,25 @@ class LinkedList
     end
 
     def size
+        size_of_nodes = @@instances.size
+        size_of_nodes
     end
 
     def head
+       p @head
     end
 
     def tail
+        p @tail
     end
 
     def at(index)
+        @@instances[index]
     end
 
     def pop 
         @@instances.pop
+        next_node_correction
     end
     
     def contains?(value)
@@ -61,12 +68,20 @@ class LinkedList
     end
 
     def find(value)
-        @@instances.each_with_index do |node,i|
-            if node.value == value
-                puts node.value
+        if @@instances.include?(value)
+            @@instances.each_with_index do |node,i|
+                if node.value == value
+                    puts "#{node} is in the index #{i}."
+                end
+            end
+        elsif !@@instances.include?(value)
+            puts "Node not found"
+        end
     end
 
     def to_s
+        @@instances.each do |node|
+            print " [#{node.value}] -> "
     end
 
 
