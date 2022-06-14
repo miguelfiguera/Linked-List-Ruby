@@ -24,16 +24,13 @@ class LinkedList
     end
 
     def next_node_correction
-        num = @instances.length
-        if num == 1
-            @instances
-        elsif num != 1
-            @instances.each_with_index do |node,i|
-                if i < (num-1) && node.next_node == nil
-                    node.next_node = node[i+1]
-                elsif i == (num-1)
-                    node.next_node = nil
-                end
+        binding.pry
+        length=@instances.length
+        @instances.each_with_index do |n,i|
+            if i < length-1
+                n.next_node = @instances[i+1]
+            elsif i == length-1
+                n.next_node = nil
             end
         end
     end
@@ -46,14 +43,12 @@ class LinkedList
 
     def append(value)
         @head.nil? ? @head= create_node(value) : @tail = create_node(value)
-        next_node_correction
+        p @instances
     end
 
     def prepend(value)
         @head = Node.new(value)
         @instances.unshift(@head)
-        @head.next_node = @instances[1]
-        next_node_correction
     end
 
     def size
