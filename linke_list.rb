@@ -28,7 +28,7 @@ class LinkedList
         length=@instances.length
         @instances.each_with_index do |n,i|
             if i < length-1
-                n.next_node = @instances[i+1]
+                n.next_node = @instances[i+1].value
             elsif i == length-1
                 n.next_node = nil
             end
