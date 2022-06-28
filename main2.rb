@@ -1,5 +1,5 @@
-require_relative "linked_ver2.rb"
-require "pry"
+require_relative 'linked_ver2'
+require 'pry'
 
 list = List.new
 binding.pry
@@ -21,9 +21,7 @@ list.append(14)
 
 list.prepend(16)
 
-
 list.size
-
 
 list.popit
 
@@ -35,10 +33,10 @@ list.to_s
 
 list.delete_at(0)
 
-list.insert_at(0,"Ruling this list!")
+list.insert_at(0, 'Ruling this list!')
 
 list.next_node_correction
 
 list.to_s
 
-puts "DONE!"
+puts 'DONE!'

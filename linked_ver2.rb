@@ -18,7 +18,7 @@ class List
 
     def next_node_correction
         lenght=@instances.length
-        @instances.each_with_index do |n,i|
+        @instances.each_with_index do|n,i|
             if i < length -1
                 n.next_node = @instances[i+1].value
             elsif i == length-1
