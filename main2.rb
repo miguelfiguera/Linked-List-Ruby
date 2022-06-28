@@ -16,7 +16,6 @@ list.head
 
 list.tail
 
-binding.pry
 
 
 list.append(14)

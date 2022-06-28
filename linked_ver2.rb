@@ -89,8 +89,11 @@ class List
     end
 
     def insert_at(index,value=nil,next_node=nil)
+        binding.pry
+
         puts "Value of this node is nil." if value.nil? && next_node.nil?
-        @instances.insert(index,create_node(value))
+        newer_node = Node.new(value)
+        @instances.insert(index,newer_node)
         next_node_correction
     end
 end
