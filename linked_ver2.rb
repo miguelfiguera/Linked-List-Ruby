@@ -27,6 +27,13 @@ class List
         end
     end
 
+    def create_nodes_array(array)
+        array.each_with_index do |n,i|
+            create_node(n,array[i+1]) unless array[i+1].nil?
+        end
+    end
+
+
     def create_node(value=nil,next_node=nil)
         @instances.push(Node.new(value,next_node))
          @node_count+= 1
@@ -66,10 +73,20 @@ class List
         @instances.each_with_index {|n,i| puts "Node #{n} is at #{i} index." if n.value == value }
     end
 
-    #def to_s
+    def to_s
+        @instances.each do |n|
+            p "( #{n.value} ) -> ( #{n.children} ) ->"
+        end
+    end
 
-    #def delete_at
+    def delete_at(index)
+        @instances.delete_at(index)
+        next_node_correction
+    end
 
-    #def insert_at
-
+    def insert_at(index,value=nil,next_node=nil)
+        puts "Value of this node is nil." if value.nil? && next_node.nil?
+        array.insert(index,create_node(value))
+        next_node_correction
+    end
 end
