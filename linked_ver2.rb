@@ -8,7 +8,7 @@ end
 
 class List
     
-    attr_accessor :instances , :head, :tail, :node_count
+    attr_accessor :instances , :head, :tail, :node_num
     def initialize
         @instances=[]
         @node_num= 0
@@ -17,14 +17,16 @@ class List
     end
 
     def next_node_correction
-        lenght=@instances.length
+        leng=@instances.length
         @instances.each_with_index do|n,i|
-            if i < length -1
-                n.next_node = @instances[i+1].value
-            elsif i == length-1
-                n.next_node.nil
+            if i < leng -1
+                n.children = @instances[i+1].value
+            elsif i == leng-1
+                n.children = nil
             end
         end
+        @head = @instances[0]
+        @tail = @instances[-1]
     end
 
     def create_nodes_array(array)
@@ -36,17 +38,18 @@ class List
 
     def create_node(value=nil,next_node=nil)
         @instances.push(Node.new(value,next_node))
-         @node_count+= 1
+         @node_num += 1
     end
 
     def append(value,next_node=nil)
         create_node(value)
-        self.next_node_correction
+        next_node_correction
     end
 
     def prepend(value=nil)
-        @instances.unshift(create_node(value))
-        self.next_node_correction
+        new_node=Node.new(value)
+        @instances.unshift(new_node)
+        next_node_correction
     end
 
     def size
@@ -63,6 +66,7 @@ class List
 
     def popit
         @instances.pop
+        @node_num -= 1
     end
 
     def at_index(num)
@@ -86,7 +90,7 @@ class List
 
     def insert_at(index,value=nil,next_node=nil)
         puts "Value of this node is nil." if value.nil? && next_node.nil?
-        array.insert(index,create_node(value))
+        @instances.insert(index,create_node(value))
         next_node_correction
     end
 end

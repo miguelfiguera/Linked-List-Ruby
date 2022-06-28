@@ -2,12 +2,11 @@ require_relative 'linked_ver2'
 require 'pry'
 
 list = List.new
-binding.pry
 
-create_node(1)
-create_node(2)
-create_node(3)
-create_node(0)
+list.create_node(1)
+list.create_node(2)
+list.create_node(3)
+list.create_node(0)
 
 list.next_node_correction
 
@@ -16,6 +15,9 @@ p list.instances
 list.head
 
 list.tail
+
+binding.pry
+
 
 list.append(14)
 
